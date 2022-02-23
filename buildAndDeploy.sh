@@ -7,6 +7,7 @@ if [ -z ${ecr} ]; then
     exit 0
 fi
 
+npm install --prefix ./app
 terraform -chdir=./deployment init
 buildDateTime=$(date '+%d_%m_%Y_%H_%M')
 aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin $ecr
